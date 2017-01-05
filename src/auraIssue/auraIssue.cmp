@@ -1,0 +1,26 @@
+<aura:component >
+	<aura:attribute access="PUBLIC" name="userPreference" type="object"   />
+	<aura:attribute access="PUBLIC" name="isSplitView" type="boolean" default="false" />
+	<aura:attribute access="PUBLIC" name="showSplitMenu" type="boolean" default="true" />
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+	<aura:if isTrue="{!if(v.userPreference == 'List',true,false)}">
+	<button onclick="{!c.handleView}" title="Switch to Card View" class="slds-button-group slds-button slds-button--neutral">
+	       Change to View 2
+	</button>
+	<aura:set attribute="else">
+	    <button onclick="{!c.handleView}" title="Switch to List View" class="slds-button-group slds-button slds-button--neutral">
+	       Change to View 1
+        </button>
+	</aura:set>
+	</aura:if> 
+       <aura:if isTrue="{!and(v.showSplitMenu,v.isSplitView) }">                                           
+        <button onclick="{!c.changeSplit}" title="Switch to Normal View" class="slds-button-group slds-button slds-button--neutral">
+                Split Window
+        </button>                                           
+        </aura:if> 
+	<aura:if isTrue="{!and(v.showSplitMenu,not(v.isSplitView)) }">                                              
+	<button onclick="{!c.changeSplit}" title="Switch to Golden View" class="slds-button-group slds-button slds-button--neutral">
+        	        Single Window
+     </button>                                           
+	</aura:if> 
+ </aura:component>
